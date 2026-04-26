@@ -11,6 +11,7 @@ import { SeverityBadge } from "../components/SeverityBadge.jsx";
 import { useAIDiagnostic } from "../hooks/useAIDiagnostic.js";
 import { useBreakpoint } from "../hooks/useBreakpoint.js";
 import { getSeverity } from "../data/operatingRanges.js";
+import ArchitecturePage from "./ArchitecturePage.jsx";
 
 export default function Dashboard() {
   const [proc, setProc]       = useState(SAMPLE_PROCESS);
@@ -90,9 +91,10 @@ export default function Dashboard() {
   const pad = isMobile ? "16px" : "24px 28px";
 
   const tabs = [
-    { key: "findings", label: isMobile ? `Findings (${findings.length})` : `Findings (${findings.length})` },
-    { key: "actions",  label: isMobile ? "Actions" : "Top 3 Margin Actions" },
-    { key: "kpis",     label: isMobile ? "KPIs" : "KPI Dashboard" },
+    { key: "findings",     label: `Findings (${findings.length})` },
+    { key: "actions",      label: isMobile ? "Actions" : "Top 3 Margin Actions" },
+    { key: "kpis",         label: isMobile ? "KPIs" : "KPI Dashboard" },
+    { key: "architecture", label: isMobile ? "Arch" : "Architecture" },
   ];
 
   return (
@@ -264,6 +266,9 @@ export default function Dashboard() {
           {actions.map((a, i) => <ActionCard key={a.id} action={a} rank={i + 1} />)}
         </div>
       )}
+
+      {/* ── Architecture tab ── */}
+      {activeTab === "architecture" && <ArchitecturePage />}
 
       {/* ── KPI tab ── */}
       {activeTab === "kpis" && (

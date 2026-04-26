@@ -47,3 +47,12 @@ p, li, td, th { overflow-wrap: break-word; word-break: break-word; }
   -webkit-overflow-scrolling: touch;
 }
 .table-wrap table { min-width: 480px; }
+
+/* Architecture diagram — animated data-flow arrows */
+@keyframes flowDash {
+  to { stroke-dashoffset: -22; }
+}
+.flow-arrow path {
+  stroke-dasharray: 6 4;
+  animation: flowDash 2s linear infinite;
+}
